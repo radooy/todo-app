@@ -11,8 +11,9 @@ const TemperatureViewer = () => {
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
-            .then(data => setTemp(data.current.temp_c));
-    }, [])
+            .then(data => setTemp(data.current.temp_c))
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <>
