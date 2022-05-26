@@ -14,16 +14,24 @@ const MainContent = () => {
     const removeTodo = (id) => {
         const todosAfterRemove = todos.filter(td => td.id !== id);
         setTodos(todosAfterRemove);
-    }
+    };
 
     const addTodo = (todo) => {
         setTodos([...todos, todo]);
-    }
+    };
+
+    const editTodo = (todo) => {
+        const index = todos.findIndex(t => t.id === todo.id);
+        const newTodos = [...todos];
+        newTodos.splice(index, 1, todo);
+        setTodos(newTodos);
+    };
+
     return (
         <Container className="border border-secondary rounded p-5">
             <Row className="mb-3">
                 <Col lg="8">
-                    <TodoItems todos={todos} removeTodo={removeTodo} />
+                    <TodoItems todos={todos} removeTodo={removeTodo} editTodo={editTodo} />
                 </Col>
                 <Col lg="4">
                     <TemperatureViewer />
